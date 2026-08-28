@@ -1,0 +1,85 @@
+# Project Specification
+
+Saved on: 2024-08-28
+
+## Basics
+- **Project Name:** E-commerce API response validator — test 3 implementations
+- **Goal:** Run 3 E-commerce API implementations and compare pass rates + latency
+- **Test Type:** B (3 different branches/implementations)
+
+## Tech Stack
+- **Runtime:** Node.js 20 LTS
+- **Framework:** Express.js
+- **Testing:** Jest
+- **Database:** PostgreSQL 15
+- **Package Manager:** npm v9
+
+## Repository
+- **Owner:** PatericTy
+- **Repo:** ecommerce-test-harness
+- **Branches under test:**
+  - `impl-a`
+  - `impl-b`
+  - `impl-c`
+- **Default branch:** main
+
+## Environment
+- **OS:** Linux
+- **Containerization:** Docker Desktop
+- **Services:** PostgreSQL 15 (containerized)
+
+## Metrics & Scoring
+- **Primary Metric:** Pass Rate (% of tests passing)
+- **Secondary Metric:** Latency (test execution time in ms)
+- **Score Formula:** `0.7 * (pass_rate / 100) + 0.3 * (1 - latency / 500)`
+- **Tie-Breaker:** Lower latency preferred
+- **Max Latency Threshold:** 500ms (normalization constant)
+
+## Acceptance Criteria
+✅ **PASS** if BOTH:
+1. Pass Rate ≥ 95%
+2. Latency < 250ms
+
+❌ **FAIL** if either threshold is not met
+
+## Deliverables (All ✅)
+- [x] Scaffold project files
+- [x] Test harness script (`run-tests.sh`)
+- [x] Example tests (Jest suite)
+- [x] GitHub Actions workflow
+- [x] README with run instructions
+- [x] Comprehensive documentation (`docs/HARNESS.md`)
+
+## Commands
+- **Local harness:** `./run-tests.sh`
+- **Install deps:** `npm ci`
+- **Run tests:** `npm test`
+- **Unit tests:** `npm run test:unit`
+- **Integration tests:** `npm run test:integration`
+
+## CI/CD
+- **Platform:** GitHub Actions
+- **Trigger:** Push to main / impl-a / impl-b / impl-c, PR to main
+- **Secrets Required:**
+  - `DB_PASSWORD`
+  - `API_KEY`
+- **Artifacts:** `test-results.json`
+- **PR Comments:** Yes (summary of best implementation)
+
+## Priority
+**Reliability** — Pass rate weighted at 70% of overall score
+
+## Data & Fixtures
+- Test fixtures: `fixtures/products-list.json` (example)
+- Expected responses: Fixtures follow standard JSON structure
+- External data: https://example.com/test-fixtures.zip (to be integrated)
+
+## Additional Notes
+- Tag @PatericTy on PRs
+- Use Node 20 LTS only
+- Prefer lower latency for tie-breaking
+- Database runs in Docker container during CI
+
+---
+
+**Status:** ✅ Complete & Ready for Use
